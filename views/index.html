@@ -10,11 +10,34 @@
     </div>
     <div class="col-md-9">
 
-        <!-- display tweets here -->
-        {% for tweet in tweets %}
-        <li>{{tweet.content}}</li>
-        {% endfor %}
+        {% if showForm %}
+        <form action="/tweets" method="POST">
+            <label for="name_field">Name:</label>
+            <input name="name" type="text" id="name_field" value="{{name}}" />
 
+            <label for="text_field">Text:</label>
+            <input name="text" type="text" id="text_field" style="width: 350px;" />
+
+            <input type="submit" value="Submit" />
+        </form>
+        {% endif %}
+
+        <h3>All Tweets</h3>
+        <table border="0" cellpadding="5">
+            <!-- display tweets here -->
+            {% for tweet in tweets %}
+            <tr>
+                <td valign="top">
+                    <img src="https://pbs.twimg.com/profile_images/479315519729070081/ty2LLr9m.jpeg" height="40" width="40">
+                </td>
+                <td valign="top">
+                    <p><a href="/users/{{tweet.name}}"><strong>{{tweet.name}}</strong></a><br> {{tweet.content}}
+                        <br>
+                        <a href="">Re-tweet</a></p>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 

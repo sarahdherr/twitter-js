@@ -1,8 +1,14 @@
 const _ = require("lodash");
 var data = [];
+var id = 1000;
 
 function add(name, content) {
-    data.push({ name: name, content: content });
+    data.push({ name: name, content: content, id: generateID().toString() });
+}
+
+function generateID() {
+    id++;
+    return id;
 }
 
 function list() {
@@ -35,5 +41,4 @@ for (let i = 0; i < 10; i++) {
     module.exports.add(getFakeName(), getFakeTweet());
 }
 
-// module.exports.add("Grace Hopper", "Hello world");
-// console.log(module.exports.find({ content: "Hello world" }));
+console.log(data);
